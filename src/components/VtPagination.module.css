@@ -1,0 +1,11 @@
+.parent {
+  @apply vt-pagination-flex vt-pagination-flex-col lg:vt-pagination-flex-row vt-pagination-justify-center lg:vt-pagination-justify-between vt-pagination-items-center;
+}
+
+.showing-parent {
+  @apply vt-pagination-space-x-1;
+}
+
+.showing-highlight {
+  @apply vt-pagination-font-medium;
+}

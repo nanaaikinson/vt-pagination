@@ -1,11 +1,35 @@
 .parent {
-  @apply vt-pagination-flex vt-pagination-flex-col lg:vt-pagination-flex-row vt-pagination-justify-center lg:vt-pagination-justify-between vt-pagination-items-center;
+  @apply flex flex-col lg:flex-row justify-center lg:justify-between items-center;
 }
 
 .showing-parent {
-  @apply vt-pagination-space-x-1;
+  @apply space-x-1;
 }
 
 .showing-highlight {
-  @apply vt-pagination-font-medium;
+  @apply font-medium;
+}
+
+.page-item {
+  @apply border border-gray-200 h-10 inline-flex items-center px-3 leading-tight text-gray-500 bg-white hover:bg-blue-100;
+}
+
+.active {
+  @apply text-white bg-blue-600 border-blue-600 hover:bg-blue-600;
+}
+
+.disabled {
+  @apply pointer-events-none cursor-not-allowed;
+}
+
+.next {
+  @apply rounded-r-lg;
+}
+
+.prev {
+  @apply rounded-l-lg;
+}
+
+.nav {
+  @apply inline-flex items-center -space-x-px;
 }

@@ -10,5 +10,5 @@ module.exports = {
   corePlugins: {
     preflight: process.env.NODE_ENV !== "production",
   },
-  prefix: 'vt-pagination-'
+  // prefix: 'vt-pagination-'
 }

@@ -1,6 +1,6 @@
 <template>
   <div :class="styles.parent">
-    <template v-if="datatable">
+    <template v-if="withTable">
       <div :class="styles['showing-parent']">
         <span>Showing</span>
         <span :class="styles['showing-highlight']">{{ pageFrom }}</span>
@@ -11,6 +11,76 @@
         <span>results</span>
       </div>
     </template>
+
+    <nav aria-label="Pagination">
+      <ul role="menubar" :class="styles.nav">
+        <!-- Previous -->
+        <li class="">
+          <button
+            role="menuitem"
+            :class="[styles['page-item'], styles['prev'], isFirstPage ? styles.disabled : '']"
+            :disabled="isFirstPage"
+            @click.prevent="handlePageChange(currentPage - 1)"
+          >
+            Previous
+          </button>
+        </li>
+        <!-- Previous -->
+
+        <!-- Page 1 -->
+        <li v-if="hasFirst()">
+          <button role="menuitem" :class="styles['page-item']" @click.prevent="handlePageChange(1)">1</button>
+        </li>
+        <!-- Page 1 -->
+
+        <!-- Elipsis -->
+        <li v-if="hasFirst()" role="separator">
+          <span :class="styles['page-item']">...</span>
+        </li>
+        <!-- Elipsis -->
+
+        <!-- Pages -->
+        <li v-for="(page, index) in calculatedPages" :key="index" aria-current="page">
+          <button
+            role="menuitem"
+            class=""
+            :class="[styles['page-item'], currentPage === page ? `${styles['active']} ${styles.disabled}` : '']"
+            :disabled="currentPage === page"
+            @click.prevent="handlePageChange(page)"
+          >
+            {{ page }}
+          </button>
+        </li>
+        <!-- Pages -->
+
+        <!-- Elipsis -->
+        <li v-if="hasLast()" role="separator">
+          <span :class="styles['page-item']">...</span>
+        </li>
+        <!-- Elipsis -->
+
+        <!-- Last page -->
+        <li v-if="hasLast()">
+          <button role="menuitem" :class="styles['page-item']" @click.prevent="handlePageChange(totalPages)">
+            {{ totalPages }}
+          </button>
+        </li>
+        <!-- Last page -->
+
+        <!-- Next page -->
+        <li>
+          <button
+            role="menuitem"
+            :class="[styles['page-item'], styles.next, isLastPage ? styles.disabled : '']"
+            :disabled="isLastPage"
+            @click.prevent="handlePageChange(currentPage + 1)"
+          >
+            Next
+          </button>
+        </li>
+        <!-- Next page -->
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -33,7 +103,7 @@ export default defineComponent({
       type: Number,
       required: true,
     },
-    datatable: {
+    withTable: {
       type: Boolean,
       required: false,
       default: () => false,
@@ -45,7 +115,7 @@ export default defineComponent({
     const pageRange = ref<number>(1);
 
     // Props
-    const { currentPage, perPage, totalItems, datatable } = toRefs(props);
+    const { currentPage, perPage, totalItems, withTable } = toRefs(props);
 
     // Computed
     const totalPages = computed(() => Math.ceil(totalItems.value / perPage.value));
@@ -88,12 +158,9 @@ export default defineComponent({
       }
     };
 
-    // Hooks
-    console.log(styles);
-
     return {
       styles,
-      datatable,
+      withTable,
       totalPages,
       pageFrom,
       pageTo,

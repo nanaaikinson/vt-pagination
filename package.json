@@ -1,7 +1,7 @@
 {
   "name": "@nanaaikinson24/vt-pagination",
   "private": false,
-  "version": "0.8.3",
+  "version": "1.0.0",
   "main": "dist/vt-pagination.umd.js",
   "module": "dist/vt-pagination.es.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,7 @@
     "css": "yarn tsm src --watch",
     "build": "run-p build:*",
     "build:scripts": "vite build",
-    "build:types": "vue-tsc --emitDeclarationOnly && tsc-alias && cd dist && rm -rf App.* main.* favicon.*"
+    "build:types": "vue-tsc --emitDeclarationOnly && tsc-alias && cp README.md dist && cd dist && rm -rf App.* main.* favicon.*"
   },
   "peerDependencies": {
     "vue": "^3.2.25"

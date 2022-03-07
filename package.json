@@ -1,7 +1,7 @@
 {
   "name": "@nanaaikinson24/vt-pagination",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/vt-pagination.umd.js",
   "module": "dist/vt-pagination.es.js",
   "types": "dist/index.d.ts",
